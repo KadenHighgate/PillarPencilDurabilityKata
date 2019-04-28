@@ -13,5 +13,10 @@ namespace PillarPencilDurabilityKata
         {
             content = string.Empty;
         }
+
+        public Paper(string startingContent)
+        {
+            content = startingContent;
+        }
     }
 }

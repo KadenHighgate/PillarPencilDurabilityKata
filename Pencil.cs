@@ -10,7 +10,7 @@ namespace PillarPencilDurabilityKata
     {
         internal void Write(Paper paper, string content)
         {
-            paper.content = content;
+            paper.content += content;
         }
     }
 }

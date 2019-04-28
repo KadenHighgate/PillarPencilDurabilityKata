@@ -23,5 +23,16 @@ namespace PillarPencilDurabilityKata.Tests
 
             Assert.AreEqual("Writing", paper.content);
         }
+
+        [Test]
+        [Category("pass")]
+        public void whenWeWriteAStringThatStringIsAddedToPaperCurrentContent()
+        {
+            Pencil pencil = new Pencil();
+            Paper paper = new Paper("I am");
+            pencil.Write(paper, " Writing");
+
+            Assert.AreEqual("I am Writing", paper.content);
+        }
     }
 }
