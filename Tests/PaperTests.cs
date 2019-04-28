@@ -13,7 +13,7 @@ namespace PillarPencilDurabilityKata.Tests
         [Test]
         public void whenThePaperIsWrittenToWeCanReadIt()
         {
-            Pencil pencil = new Pencil();
+            Pencil pencil = new Pencil(10);
             Paper paper = new Paper();
 
             pencil.Write(paper, "I am being written to");

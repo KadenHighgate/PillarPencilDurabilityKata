@@ -16,7 +16,7 @@ namespace PillarPencilDurabilityKata.Tests
         [SetUp]
         public void InitializeWritingSpace()
         {
-            pencil = new Pencil();
+            pencil = new Pencil(10);
             paper = new Paper();
         }
 
@@ -33,11 +33,22 @@ namespace PillarPencilDurabilityKata.Tests
         [Category("pass")]
         public void whenWeWriteAStringThatStringIsAddedToPaperCurrentContent()
         {
-            Pencil pencil = new Pencil();
+            Pencil pencil = new Pencil(10);
             Paper paper = new Paper("I am");
             pencil.Write(paper, " Writing");
 
             Assert.AreEqual("I am Writing", paper.content);
+        }
+
+        [Test]
+        [Category("pass")]
+        public void WhenThePencilWritesItsDurabilityDegrades()
+        {
+            int startDurability = pencil.durability;
+            pencil.Write(paper, "123456789101112");
+            int endDurability = pencil.durability;
+
+            Assert.Less(endDurability, startDurability);
         }
     }
 }
