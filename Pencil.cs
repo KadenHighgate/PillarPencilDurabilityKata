@@ -8,11 +8,14 @@ namespace PillarPencilDurabilityKata
 {
     class Pencil
     {
-        internal int durability;
+        int durability;
+        int maxDurability;
 
-        public Pencil(int durability)
+        public Pencil(int maxDurability)
         {
-            this.durability = durability;
+            durability = maxDurability;
+            this.maxDurability = maxDurability;
+
         }
 
         internal void Write(Paper paper, string content)
@@ -44,6 +47,11 @@ namespace PillarPencilDurabilityKata
                 }
             }
             paper.AddContent(writtenContent);
+        }
+
+        internal void Sharpen()
+        {
+            durability = maxDurability;
         }
     }
 }
