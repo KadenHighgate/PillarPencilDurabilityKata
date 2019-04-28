@@ -45,10 +45,20 @@ namespace PillarPencilDurabilityKata.Tests
         public void WhenThePencilWritesItsDurabilityDegrades()
         {
             int startDurability = pencil.durability;
-            pencil.Write(paper, "123456789101112");
+            pencil.Write(paper, "0123456789ABCDEF");
             int endDurability = pencil.durability;
 
             Assert.Less(endDurability, startDurability);
+        }
+
+        [Test]
+        [Category("pass")]
+        public void WhenALowerCaseLetterIsWrittenItDegradesDurabilityByOne()
+        {
+            int startDurability = pencil.durability;
+            pencil.Write(paper, "u");
+
+            Assert.AreEqual(startDurability, pencil.durability + 1);
         }
     }
 }

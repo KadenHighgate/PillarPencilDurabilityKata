@@ -20,7 +20,13 @@ namespace PillarPencilDurabilityKata
             foreach (char ch in content)
             {
                 if (!Char.IsWhiteSpace(ch))
-                    durability -= 1;
+                {
+                    if (Char.IsLower(ch))
+                        durability -= 1;
+                    else
+                        durability -= 1;
+                }
+
             }
 
             paper.AddContent(content);
