@@ -26,15 +26,20 @@ namespace PillarPencilDurabilityKata
                     if (Char.IsUpper(ch) && durability > 1)
                     {
                         durability -= 2;
+                        writtenContent += ch;
                     }
                     else if (durability > 0)
                     {
                         durability -= 1;
+                        writtenContent += ch;
                     }
                     else if (durability <= 0)
                     {
-                        continue;
+                        writtenContent += ' ';
                     }
+                }
+                else
+                {
                     writtenContent += ch;
                 }
             }
