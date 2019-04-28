@@ -17,17 +17,28 @@ namespace PillarPencilDurabilityKata
 
         internal void Write(Paper paper, string content)
         {
+            string writtenContent = string.Empty;
             foreach (char ch in content)
             {
+
                 if (!Char.IsWhiteSpace(ch))
                 {
-                    if (Char.IsUpper(ch))
+                    if (Char.IsUpper(ch) && durability > 1)
+                    {
                         durability -= 2;
-                    else
+                    }
+                    else if (durability > 0)
+                    {
                         durability -= 1;
+                    }
+                    else if (durability <= 0)
+                    {
+                        continue;
+                    }
+                    writtenContent += ch;
                 }
             }
-            paper.AddContent(content);
+            paper.AddContent(writtenContent);
         }
     }
 }

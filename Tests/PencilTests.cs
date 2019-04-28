@@ -70,5 +70,15 @@ namespace PillarPencilDurabilityKata.Tests
 
             Assert.AreEqual(startDurability, pencil.durability + 2);
         }
+
+        [Test]
+        [Category("pass")]
+        public void WhenPencilRunsOutOfDurabilityCharactersStopBeingWritten()
+        {
+            string content = "OceanViews,smallcircle";
+            pencil.Write(paper, content);
+
+            Assert.AreEqual(content.Remove(8), paper.content);
+        }
     }
 }
