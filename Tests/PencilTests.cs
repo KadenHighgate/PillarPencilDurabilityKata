@@ -10,17 +10,22 @@ namespace PillarPencilDurabilityKata.Tests
     [TestFixture]
     class PencilTests
     {
+        Pencil pencil;
+        Paper paper;
 
-
+        [SetUp]
+        public void InitializeWritingSpace()
+        {
+            pencil = new Pencil();
+            paper = new Paper();
+        }
 
         [Test]
         [Category("pass")]
-        public void whenWeWriteAStringThatStringIsOnPaperAccurately()
+        public void whenWeWriteAStringThatStringIsAppliedToPaperAccurately()
         {
-            Pencil pencil = new Pencil();
-            Paper paper = new Paper();
-            pencil.Write(paper, "Writing");
 
+            pencil.Write(paper, "Writing");
             Assert.AreEqual("Writing", paper.content);
         }
 

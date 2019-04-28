@@ -9,6 +9,7 @@ namespace PillarPencilDurabilityKata
     class Paper
     {
         public string content;
+
         public Paper()
         {
             content = string.Empty;
@@ -17,6 +18,11 @@ namespace PillarPencilDurabilityKata
         public Paper(string startingContent)
         {
             content = startingContent;
+        }
+
+        public void AddContent(string newContent)
+        {
+            content += newContent;
         }
     }
 }

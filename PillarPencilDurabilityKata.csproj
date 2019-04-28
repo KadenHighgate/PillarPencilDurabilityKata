@@ -54,6 +54,7 @@
     <Compile Include="Pencil.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\PaperTests.cs" />
     <Compile Include="Tests\PencilTests.cs" />
   </ItemGroup>
   <ItemGroup>

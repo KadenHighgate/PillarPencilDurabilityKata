@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace PillarPencilDurabilityKata
 {
-    public class Pencil
+    class Pencil
     {
         internal void Write(Paper paper, string content)
         {
-            paper.content += content;
+            paper.AddContent(content);
         }
     }
 }
