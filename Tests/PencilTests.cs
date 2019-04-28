@@ -60,5 +60,15 @@ namespace PillarPencilDurabilityKata.Tests
 
             Assert.AreEqual(startDurability, pencil.durability + 1);
         }
+
+        [Test]
+        [Category("pass")]
+        public void WhenAUpperCaseLetterIsWrittenItDegradesDurabilityByTwo()
+        {
+            int startDurability = pencil.durability;
+            pencil.Write(paper, "I");
+
+            Assert.AreEqual(startDurability, pencil.durability + 2);
+        }
     }
 }

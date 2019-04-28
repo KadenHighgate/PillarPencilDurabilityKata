@@ -21,14 +21,12 @@ namespace PillarPencilDurabilityKata
             {
                 if (!Char.IsWhiteSpace(ch))
                 {
-                    if (Char.IsLower(ch))
-                        durability -= 1;
+                    if (Char.IsUpper(ch))
+                        durability -= 2;
                     else
                         durability -= 1;
                 }
-
             }
-
             paper.AddContent(content);
         }
     }
