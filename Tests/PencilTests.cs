@@ -132,5 +132,15 @@ namespace PillarPencilDurabilityKata.Tests
 
             Assert.AreEqual("Now You See Me, Now     Don't", paper.content);
         }
+
+        [Test]
+        [Category("pass")]
+        public void WhenAPencilErasesTextItReplacesTextWithinAWord()
+        {
+            paper.AddContent("Temptations, Organizations, Occupations");
+            pencil.Erase(paper, "ation");
+
+            Assert.AreEqual("Temptations, Organizations, Occup     s", paper.content);
+        }
     }
 }

@@ -69,9 +69,9 @@ namespace PillarPencilDurabilityKata
             string[] contentArray = paper.content.Split(' ');
             for (int i = contentArray.Length - 1; i >= 0; i--)
             {
-                if (contentArray[i].Equals(eraseContent))
+                if (contentArray[i].Contains(eraseContent))
                 {
-                    contentArray[i] = blankSpaces;
+                    contentArray[i] = contentArray[i].Replace(eraseContent, blankSpaces);
                     break;
                 }
             }
