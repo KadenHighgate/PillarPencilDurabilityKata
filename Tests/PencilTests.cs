@@ -164,5 +164,16 @@ namespace PillarPencilDurabilityKata.Tests
 
             Assert.AreEqual("Bam   ", paper.content);
         }
+
+        [Test]
+        [Category("pass")]
+        public void WhenAPencilErasesBeyondItsDurabilityDoNotRemoveRemainingText()
+        {
+            pencil = new Pencil(100, 8, 5);
+            paper.AddContent("What Remains");
+            pencil.Erase(paper, "What Remains");
+
+            Assert.AreEqual("What Re     ", paper.content);
+        }
     }
 }

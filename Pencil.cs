@@ -68,28 +68,30 @@ namespace PillarPencilDurabilityKata
         internal void Erase(Paper paper, string eraseContent)
         {
             int eraseLength = eraseContent.Length;
-            string blankSpaces = string.Empty;
-            string[] contentArray;
+            string[] contentArray = paper.content.Split(' ');
+            string[] eraseContentArray = eraseContent.Split(' ');
 
-            contentArray = paper.content.Split(' ');
-            for (int i = contentArray.Length - 1; i >= 0; i--)
+
+            for (int i = eraseContentArray.Length - 1; i >= 0; i--)
             {
-                if (contentArray[i].Contains(eraseContent))
-                {
-                    int startIndex = contentArray[i].LastIndexOf(eraseContent);
-                    int endIndex = startIndex + eraseLength - 1;
-
-                    for (int j = endIndex; j >= startIndex && j <= endIndex; j--)
+                for (int j = contentArray.Length - 1; j >= 0; j--)
+                    if (contentArray[j].Contains(eraseContentArray[i]))
                     {
-                        if (eraserDurability >= 0)
+                        int startIndex = contentArray[j].LastIndexOf(eraseContentArray[i]);
+                        int endIndex = startIndex + eraseContentArray[i].Length - 1;
+
+                        for (int k = endIndex; k >= startIndex && k <= endIndex; k--)
                         {
-                            contentArray[i] = contentArray[i].Remove(j, 1);
-                            contentArray[i] = contentArray[i].Insert(j, " ");
-                            eraserDurability -= 1;
+                            if (eraserDurability > 0)
+                            {
+                                contentArray[j] = contentArray[j].Remove(k, 1);
+                                contentArray[j] = contentArray[j].Insert(k, " ");
+                                eraserDurability -= 1;
+                            }
                         }
+                        break;
                     }
-                    break;
-                }
+
             }
             paper.content = string.Join(" ", contentArray);
         }
