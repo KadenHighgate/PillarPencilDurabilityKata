@@ -112,5 +112,16 @@ namespace PillarPencilDurabilityKata.Tests
 
             Assert.AreEqual(10, pencil.durability);
         }
+
+        [Test]
+        [Category("pass")]
+        public void WhenAPencilErasesTextItReplacesTextWithWhiteSpace()
+        {
+            paper.AddContent("Now You See Me");
+            pencil.Erase(paper, "See");
+
+            Assert.IsTrue(!paper.content.Contains("See"));
+        }
+
     }
 }

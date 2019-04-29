@@ -56,5 +56,17 @@ namespace PillarPencilDurabilityKata
             if (length > 0)
                 length -= 1;
         }
+
+        internal void Erase(Paper paper, string eraseContent)
+        {
+            int eraseLength = eraseContent.Length;
+            string blankSpaces = string.Empty;
+
+            for (int i = 0; i < eraseLength; i++)
+            {
+                blankSpaces += " ";
+            }
+            paper.content = paper.content.Replace(eraseContent, blankSpaces);
+        }
     }
 }
