@@ -16,7 +16,7 @@ namespace PillarPencilDurabilityKata.Tests
         [SetUp]
         public void InitializeWritingSpace()
         {
-            pencil = new Pencil(100, 8);
+            pencil = new Pencil(100, 8, 100);
             paper = new Paper();
         }
 
@@ -141,6 +141,17 @@ namespace PillarPencilDurabilityKata.Tests
             pencil.Erase(paper, "ation");
 
             Assert.AreEqual("Temptations, Organizations, Occup     s", paper.content);
+        }
+
+        [Test]
+        [Category("pass")]
+        public void WhenAPencilErasesItDegradesByOne()
+        {
+            pencil = new Pencil(100, 8, 5);
+            paper.AddContent("Erase");
+            pencil.Erase(paper, "Erase");
+
+            Assert.AreEqual(0, pencil.eraserDurability);
         }
     }
 }

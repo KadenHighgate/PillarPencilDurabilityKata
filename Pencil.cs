@@ -8,9 +8,12 @@ namespace PillarPencilDurabilityKata
 {
     class Pencil
     {
-        public int durability;
         int maxDurability;
+        int maxEraserDurability;
+        public int durability;
         public int length;
+        public int eraserDurability;
+
 
         public Pencil(int maxDurability, int length)
         {
@@ -18,6 +21,11 @@ namespace PillarPencilDurabilityKata
             this.maxDurability = maxDurability;
             this.length = length;
 
+        }
+
+        public Pencil(int maxDurability, int length, int maxEraserDurability) : this(maxDurability, length)
+        {
+            eraserDurability = this.maxEraserDurability = maxEraserDurability;
         }
 
         internal void Write(Paper paper, string content)
@@ -61,17 +69,26 @@ namespace PillarPencilDurabilityKata
         {
             int eraseLength = eraseContent.Length;
             string blankSpaces = string.Empty;
-
-            for (int i = 0; i < eraseLength; i++)
-            {
-                blankSpaces += " ";
-            }
             string[] contentArray = paper.content.Split(' ');
+
             for (int i = contentArray.Length - 1; i >= 0; i--)
             {
                 if (contentArray[i].Contains(eraseContent))
                 {
+                    int startIndex = contentArray[i].IndexOf(eraseContent);
+                    int endIndex = startIndex + eraseLength - 1;
+
+                    for (int j = endIndex; j >= startIndex && j <= endIndex; j--)
+                    {
+                        if (eraserDurability >= 0)
+                        {
+                            contentArray[i] = contentArray[i].Remove(j, 1);
+                            contentArray[i] = contentArray[i].Insert(j, " ");
+                            eraserDurability -= 1;
+                        }
+                    }
                     contentArray[i] = contentArray[i].Replace(eraseContent, blankSpaces);
+
                     break;
                 }
             }
