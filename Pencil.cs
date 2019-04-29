@@ -69,13 +69,14 @@ namespace PillarPencilDurabilityKata
         {
             int eraseLength = eraseContent.Length;
             string blankSpaces = string.Empty;
-            string[] contentArray = paper.content.Split(' ');
+            string[] contentArray;
 
+            contentArray = paper.content.Split(' ');
             for (int i = contentArray.Length - 1; i >= 0; i--)
             {
                 if (contentArray[i].Contains(eraseContent))
                 {
-                    int startIndex = contentArray[i].IndexOf(eraseContent);
+                    int startIndex = contentArray[i].LastIndexOf(eraseContent);
                     int endIndex = startIndex + eraseLength - 1;
 
                     for (int j = endIndex; j >= startIndex && j <= endIndex; j--)
@@ -87,8 +88,6 @@ namespace PillarPencilDurabilityKata
                             eraserDurability -= 1;
                         }
                     }
-                    contentArray[i] = contentArray[i].Replace(eraseContent, blankSpaces);
-
                     break;
                 }
             }

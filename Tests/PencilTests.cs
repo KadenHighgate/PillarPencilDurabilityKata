@@ -153,5 +153,16 @@ namespace PillarPencilDurabilityKata.Tests
 
             Assert.AreEqual(0, pencil.eraserDurability);
         }
+
+        [Test]
+        [Category("pass")]
+        public void WhenAPencilErasesRepeatedTextInASingleWordEraseTheLastOccurance()
+        {
+            pencil = new Pencil(100, 8, 5);
+            paper.AddContent("BamBam");
+            pencil.Erase(paper, "Bam");
+
+            Assert.AreEqual("Bam   ", paper.content);
+        }
     }
 }
