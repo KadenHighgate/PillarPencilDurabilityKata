@@ -16,7 +16,7 @@ namespace PillarPencilDurabilityKata.Tests
             Pencil pencil = new Pencil(100, 8);
             Paper paper = new Paper();
 
-            pencil.Write(paper, "I am being written to");
+            paper.AddContent(pencil.Write("I am being written to"));
 
             Assert.AreEqual("I am being written to", paper.content);
         }

@@ -28,7 +28,7 @@ namespace PillarPencilDurabilityKata
             eraserDurability = this.maxEraserDurability = maxEraserDurability;
         }
 
-        internal void Write(Paper paper, string content)
+        internal string Write(string content)
         {
             string writtenContent = string.Empty;
             foreach (char ch in content)
@@ -55,7 +55,7 @@ namespace PillarPencilDurabilityKata
                     writtenContent += ch;
                 }
             }
-            paper.AddContent(writtenContent);
+            return writtenContent;
         }
 
         internal void Sharpen()
@@ -68,32 +68,20 @@ namespace PillarPencilDurabilityKata
         internal void Erase(Paper paper, string eraseContent)
         {
             int eraseLength = eraseContent.Length;
-            string[] contentArray = paper.content.Split(' ');
-            string[] eraseContentArray = eraseContent.Split(' ');
 
+            int startIndex = paper.content.LastIndexOf(eraseContent);
+            int endIndex = startIndex + eraseContent.Length - 1;
 
-            for (int i = eraseContentArray.Length - 1; i >= 0; i--)
+            for (int k = endIndex; k >= startIndex && k <= endIndex; k--)
             {
-                for (int j = contentArray.Length - 1; j >= 0; j--)
-                    if (contentArray[j].Contains(eraseContentArray[i]))
-                    {
-                        int startIndex = contentArray[j].LastIndexOf(eraseContentArray[i]);
-                        int endIndex = startIndex + eraseContentArray[i].Length - 1;
-
-                        for (int k = endIndex; k >= startIndex && k <= endIndex; k--)
-                        {
-                            if (eraserDurability > 0)
-                            {
-                                contentArray[j] = contentArray[j].Remove(k, 1);
-                                contentArray[j] = contentArray[j].Insert(k, " ");
-                                eraserDurability -= 1;
-                            }
-                        }
-                        break;
-                    }
-
+                if (eraserDurability > 0)
+                {
+                    paper.content = paper.content.Remove(k, 1);
+                    paper.content = paper.content.Insert(k, " ");
+                    eraserDurability -= 1;
+                    paper.lastEditIndex = k;
+                }
             }
-            paper.content = string.Join(" ", contentArray);
         }
     }
 }

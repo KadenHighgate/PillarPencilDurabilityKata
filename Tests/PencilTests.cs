@@ -25,7 +25,7 @@ namespace PillarPencilDurabilityKata.Tests
         public void whenWeWriteAStringThatStringIsAppliedToPaperAccurately()
         {
 
-            pencil.Write(paper, "Writing");
+            paper.AddContent(pencil.Write("Writing"));
             Assert.AreEqual("Writing", paper.content);
         }
 
@@ -34,7 +34,7 @@ namespace PillarPencilDurabilityKata.Tests
         public void whenWeWriteAStringThatStringIsAddedToPaperCurrentContent()
         {
             paper = new Paper("I am");
-            pencil.Write(paper, " Writing");
+            paper.AddContent(pencil.Write(" Writing"));
 
             Assert.AreEqual("I am Writing", paper.content);
         }
@@ -44,7 +44,7 @@ namespace PillarPencilDurabilityKata.Tests
         public void WhenThePencilWritesItsDurabilityDegrades()
         {
             int startDurability = pencil.durability;
-            pencil.Write(paper, "0123456789ABCDEF");
+            paper.AddContent(pencil.Write("0123456789ABCDEF"));
             int endDurability = pencil.durability;
 
             Assert.Less(endDurability, startDurability);
@@ -55,7 +55,7 @@ namespace PillarPencilDurabilityKata.Tests
         public void WhenALowerCaseLetterIsWrittenItDegradesDurabilityByOne()
         {
             int startDurability = pencil.durability;
-            pencil.Write(paper, "u");
+            paper.AddContent(pencil.Write("u"));
 
             Assert.AreEqual(startDurability, pencil.durability + 1);
         }
@@ -65,7 +65,7 @@ namespace PillarPencilDurabilityKata.Tests
         public void WhenAUpperCaseLetterIsWrittenItDegradesDurabilityByTwo()
         {
             int startDurability = pencil.durability;
-            pencil.Write(paper, "I");
+            paper.AddContent(pencil.Write("I"));
 
             Assert.AreEqual(startDurability, pencil.durability + 2);
         }
@@ -78,7 +78,7 @@ namespace PillarPencilDurabilityKata.Tests
             string content = "OceanViews";
             string expectedContent = "OceanVie  ";
 
-            pencil.Write(paper, content);
+            paper.AddContent(pencil.Write(content));
 
             Assert.AreEqual(expectedContent, paper.content);
         }
@@ -88,7 +88,7 @@ namespace PillarPencilDurabilityKata.Tests
         public void WhenAPencilIsSharpenedItReturnsToItsMaxDurability()
         {
             pencil = new Pencil(10, 8);
-            pencil.Write(paper, "12345");
+            paper.AddContent(pencil.Write("12345"));
             pencil.Sharpen();
             Assert.AreEqual(10, pencil.durability);
         }
@@ -107,7 +107,7 @@ namespace PillarPencilDurabilityKata.Tests
         public void WhenAPencilIsSharpenedItsDurabilityIsReset()
         {
             pencil = new Pencil(10, 8);
-            pencil.Write(paper, "hello");
+            paper.AddContent(pencil.Write("hello"));
             pencil.Sharpen();
 
             Assert.AreEqual(10, pencil.durability);
@@ -175,5 +175,17 @@ namespace PillarPencilDurabilityKata.Tests
 
             Assert.AreEqual("What Re     ", paper.content);
         }
+
+        [Test]
+        [Category("pass")]
+        public void WhenAPencilErasesTextItCanEditTheWhiteSpace()
+        {
+            paper.AddContent("Change Me");
+            pencil.Erase(paper, "Change");
+            paper.EditContent(pencil.Write("Morph"));
+
+            Assert.AreEqual("Morph  Me", paper.content);
+        }
+
     }
 }
