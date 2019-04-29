@@ -66,7 +66,16 @@ namespace PillarPencilDurabilityKata
             {
                 blankSpaces += " ";
             }
-            paper.content = paper.content.Replace(eraseContent, blankSpaces);
+            string[] contentArray = paper.content.Split(' ');
+            for (int i = contentArray.Length - 1; i >= 0; i--)
+            {
+                if (contentArray[i].Equals(eraseContent))
+                {
+                    contentArray[i] = blankSpaces;
+                    break;
+                }
+            }
+            paper.content = string.Join(" ", contentArray);
         }
     }
 }
