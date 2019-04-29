@@ -178,13 +178,17 @@ namespace PillarPencilDurabilityKata.Tests
 
         [Test]
         [Category("pass")]
-        public void WhenAPencilErasesTextItCanEditTheWhiteSpace()
-        {
-            paper.AddContent("Change Me");
-            pencil.Erase(paper, "Change");
-            paper.EditContent(pencil.Write("Morph"));
+        [TestCase("Change Me", "Change", "Morph", "Morph  Me")]
+        [TestCase("Change Me Please", "Me", "Us", "Change Us Please")]
+        [TestCase("Change MePlease", "Please", "Immediately", "Change MeImmediately")]
 
-            Assert.AreEqual("Morph  Me", paper.content);
+        public void WhenAPencilErasesTextItCanEditTheWhiteSpace(string a, string b, string c, string d)
+        {
+            paper = new Paper(a);
+            pencil.Erase(paper, b);
+            paper.EditContent(pencil.Write(c));
+
+            Assert.AreEqual(d, paper.content);
         }
 
     }

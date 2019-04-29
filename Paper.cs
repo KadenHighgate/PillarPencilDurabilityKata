@@ -9,7 +9,7 @@ namespace PillarPencilDurabilityKata
     class Paper
     {
         public string content;
-        public int lastEditIndex = 0;
+        public int lastEditIndex;
 
         public Paper()
         {
@@ -19,6 +19,7 @@ namespace PillarPencilDurabilityKata
         public Paper(string startingContent)
         {
             content = startingContent;
+            lastEditIndex = 0;
         }
 
         public void AddContent(string newContent)
@@ -29,12 +30,22 @@ namespace PillarPencilDurabilityKata
         public void EditContent(string newContent)
         {
             string edittedContent = string.Empty;
-            for (int i = lastEditIndex; i < lastEditIndex + newContent.Length; i++)
+            for (int i = 0; i < newContent.Length; i++)
             {
                 edittedContent += newContent[i];
             }
-            content = content.Remove(lastEditIndex, newContent.Length);
-            content = content.Insert(lastEditIndex, edittedContent);
+
+            if (lastEditIndex + newContent.Length <= content.Length)
+            {
+                content = content.Remove(lastEditIndex, newContent.Length);
+                content = content.Insert(lastEditIndex, edittedContent);
+            }
+            else
+            {
+                content = content.Remove(lastEditIndex);
+                content += edittedContent;
+            }
+
         }
     }
 }
