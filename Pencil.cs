@@ -8,13 +8,15 @@ namespace PillarPencilDurabilityKata
 {
     class Pencil
     {
-        int durability;
+        public int durability;
         int maxDurability;
+        public int length;
 
-        public Pencil(int maxDurability)
+        public Pencil(int maxDurability, int length)
         {
             durability = maxDurability;
             this.maxDurability = maxDurability;
+            this.length = length;
 
         }
 
@@ -52,6 +54,8 @@ namespace PillarPencilDurabilityKata
         internal void Sharpen()
         {
             durability = maxDurability;
+            if (length > 0)
+                length -= 1;
         }
     }
 }
