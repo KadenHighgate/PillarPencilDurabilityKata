@@ -101,5 +101,16 @@ namespace PillarPencilDurabilityKata.Tests
             pencil.Sharpen();
             Assert.AreEqual(7, pencil.length);
         }
+
+        [Test]
+        [Category("pass")]
+        public void WhenAPencilIsSharpenedItsDurabilityIsReset()
+        {
+            pencil = new Pencil(10, 8);
+            pencil.Write(paper, "hello");
+            pencil.Sharpen();
+
+            Assert.AreEqual(10, pencil.durability);
+        }
     }
 }

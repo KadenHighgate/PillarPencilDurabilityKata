@@ -25,7 +25,6 @@ namespace PillarPencilDurabilityKata
             string writtenContent = string.Empty;
             foreach (char ch in content)
             {
-
                 if (!Char.IsWhiteSpace(ch))
                 {
                     if (Char.IsUpper(ch) && durability > 1)
