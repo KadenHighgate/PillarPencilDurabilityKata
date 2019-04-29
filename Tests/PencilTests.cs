@@ -184,11 +184,21 @@ namespace PillarPencilDurabilityKata.Tests
 
         public void WhenAPencilErasesTextItCanEditTheWhiteSpace(string a, string b, string c, string d)
         {
-            paper = new Paper(a);
+            paper.AddContent(a);
             pencil.Erase(paper, b);
             paper.EditContent(pencil.Write(c));
 
             Assert.AreEqual(d, paper.content);
+        }
+
+        [Test]
+        [Category("pass")]
+        public void WhenEditingTextCharacterCollisionsShowFlagCharacter()
+        {
+            paper.AddContent("We are not tools of government");
+            pencil.Erase(paper, "tools");
+            paper.EditContent(pencil.Write("pawns for"));
+            Assert.AreEqual("We are not pawns @@rgovernment", paper.content);
         }
 
     }

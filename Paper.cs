@@ -32,7 +32,16 @@ namespace PillarPencilDurabilityKata
             string edittedContent = string.Empty;
             for (int i = 0; i < newContent.Length; i++)
             {
-                edittedContent += newContent[i];
+                if (lastEditIndex + i < content.Length
+                    && newContent[i] != content[lastEditIndex + i]
+                    && !Char.IsWhiteSpace(content[lastEditIndex + i]))
+                {
+                    edittedContent += "@";
+                }
+                else
+                {
+                    edittedContent += newContent[i];
+                }
             }
 
             if (lastEditIndex + newContent.Length <= content.Length)
@@ -45,7 +54,7 @@ namespace PillarPencilDurabilityKata
                 content = content.Remove(lastEditIndex);
                 content += edittedContent;
             }
-
+            lastEditIndex = content.Length - 1;
         }
     }
 }
