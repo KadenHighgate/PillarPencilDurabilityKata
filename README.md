@@ -1,11 +1,11 @@
 # PillarPencilDurabilityKata
 
 This application was written in C# using the NUnit TDD framework. I'm pretty new to TDD and this Kata has been the most exposure I've 
-had to it. I'm sold on the philosophy. The solution can be build in Visual Studio. All of the refeneces, mainly NUnit,  are NuGet packages. 
+had to it. I'm sold on the philosophy. The solution can be built in Visual Studio. All of the refeneces, mainly NUnit,  are NuGet packages. 
 
 Once the solution is retrieved, you can open the PillarPencilDurabilityKata.exe in the bin\Debug folder, or open the solution in Visual Studio. 
 
-When running the program, the user will be greeted with various commands attached to key inputs. The use will enter a key for the command they wish to execute, such as Write. From there the user will then follow the prompts provided by each command and then be routed back to the initial command prompt. This can be repeated until the user decides to quit the application.
+When running the program, the user will be greeted with various commands attached to key inputs. The user will enter a key for the command they wish to execute, such as Write. From there the user will then follow the prompts provided by each command and then be routed back to the initial command prompt. This can be repeated until the user decides to quit the application.
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 
