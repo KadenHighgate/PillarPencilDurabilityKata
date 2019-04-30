@@ -125,6 +125,16 @@ namespace PillarPencilDurabilityKata.Tests
 
         [Test]
         [Category("pass")]
+        public void WhenAPencilErasesTextThatIsntInContentDoNothing()
+        {
+            paper.AddContent("Now You See Me, Now You Don't");
+            pencil.Erase(paper, "We");
+
+            Assert.AreEqual("Now You See Me, Now You Don't", paper.content);
+        }
+
+        [Test]
+        [Category("pass")]
         public void WhenAPencilErasesTextItReplacesLastOccurranceOfText()
         {
             paper.AddContent("Now You See Me, Now You Don't");

@@ -70,6 +70,8 @@ namespace PillarPencilDurabilityKata
             int eraseLength = eraseContent.Length;
 
             int startIndex = paper.content.LastIndexOf(eraseContent);
+            if (startIndex < 0)
+                return;
             int endIndex = startIndex + eraseContent.Length - 1;
 
             for (int k = endIndex; k >= startIndex && k <= endIndex; k--)
